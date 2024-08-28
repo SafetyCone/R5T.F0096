@@ -15,16 +15,16 @@ namespace R5T.F0096
         public Dictionary<string, RemoteServerAuthentication> GetAwsRemoteServerAuthenticationsByFriendlyName(
             string awsRemoteServerConfigurationJsonFilePath)
         {
-            var configuration = ConfigurationOperator.Instance.BuildConfiguration_Synchronous(configurationBuilder =>
+            var configuration = Instances.ConfigurationOperator.BuildConfiguration_Synchronous(configurationBuilder =>
             {
                 configurationBuilder
                     .AddJsonFile(awsRemoteServerConfigurationJsonFilePath)
                     ;
             });
 
-            var awsRemoveServerConfigurations = F0029.Instances.ConfigurationOperator.Get<AwsServerConnectionSet>(configuration);
+            var awsRemoveServerConfigurations = Instances.ConfigurationOperator.Get<AwsServerConnectionSet>(configuration);
 
-            var awsRemoteServerAuthenticationsByFriendlyName = ConfigurationOperator.Instance.GetRemoteServerAuthenticationsByFriendlyName(awsRemoveServerConfigurations);
+            var awsRemoteServerAuthenticationsByFriendlyName = Instances.ConfigurationOperator.GetRemoteServerAuthenticationsByFriendlyName(awsRemoveServerConfigurations);
             return awsRemoteServerAuthenticationsByFriendlyName;
         }
 
